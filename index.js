@@ -325,7 +325,9 @@ ancients.addEventListener('click', (e) => {
     ancientsCards.forEach((card) => {
         card.classList.remove('active');
     })
-    e.target.classList.add('active');
+    if (e.target.classList.contains('ancient')) {
+        e.target.classList.add('active');
+    }
 })
 
 // level
@@ -335,6 +337,7 @@ const easy = document.querySelector('.easy');
 const normal = document.querySelector('.normal');
 const hard = document.querySelector('.hard');
 const hardest = document.querySelector('.hardest');
+const shuffleDeskBtn = document.querySelector('.shuffle-desk-btn');
 
 const difficultyBtns = document.querySelectorAll('.difficulty-btn');
 
@@ -346,19 +349,19 @@ easiest.addEventListener('click', () => {
     blueDesk = blueCardsData.filter((e) => {
         return e.difficulty !== 'hard';
     });
-    blueDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1)
+    shuffle(blueDesk);
+    blueDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1);
     brownDesk = brownCardsData.filter((e) => {
         return e.difficulty !== 'hard';
     });
-    brownDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1)
+    shuffle(brownDesk);
+    brownDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1);
     greenDesk = greenCardsData.filter((e) => {
         return e.difficulty !== 'hard';
     });
-    greenDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1)
-    console.log(blueDesk);
-    console.log(brownDesk);
-    console.log(greenDesk);
-
+    shuffle(greenDesk);
+    greenDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1);
+    shuffleDeskBtn.classList.add('visible');
 });
 
 easy.addEventListener('click', () => {
@@ -375,6 +378,10 @@ easy.addEventListener('click', () => {
     greenDesk = greenCardsData.filter((e) => {
         return e.difficulty !== 'hard';
     });
+    shuffle(greenDesk);
+    shuffle(blueDesk);
+    shuffle(brownDesk);
+    shuffleDeskBtn.classList.add('visible');
 });
 
 normal.addEventListener('click', () => {
@@ -385,6 +392,10 @@ normal.addEventListener('click', () => {
     blueDesk = blueCardsData;
     brownDesk = brownCardsData;
     greenDesk = greenCardsData;
+    shuffle(greenDesk);
+    shuffle(blueDesk);
+    shuffle(brownDesk);
+    shuffleDeskBtn.classList.add('visible');
 });
 
 hard.addEventListener('click', () => {
@@ -401,6 +412,33 @@ hard.addEventListener('click', () => {
     greenDesk = greenCardsData.filter((e) => {
         return e.difficulty !== 'easy';
     });
+    shuffle(greenDesk);
+    shuffle(blueDesk);
+    shuffle(brownDesk);
+    shuffleDeskBtn.classList.add('visible');
+});
+
+hardest.addEventListener('click', () => {
+    difficultyBtns.forEach((btn) => {
+        btn.classList.remove('active');
+    })
+    hardest.classList.add('active');
+    blueDesk = blueCardsData.filter((e) => {
+        return e.difficulty !== 'easy';
+    });
+    shuffle(blueDesk);
+    blueDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1);
+    brownDesk = brownCardsData.filter((e) => {
+        return e.difficulty !== 'easy';
+    });
+    shuffle(brownDesk);
+    brownDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1);
+    greenDesk = greenCardsData.filter((e) => {
+        return e.difficulty !== 'easy';
+    });
+    shuffle(greenDesk);
+    greenDesk.sort((a, b) => a.difficulty > b.difficulty ? 1 : -1);
+    shuffleDeskBtn.classList.add('visible');
 });
 
 let deskForStage1 = [];
@@ -415,27 +453,24 @@ function shuffle(desk) {
 // azathoth
 
 function azathothGreenCardsDesk() {
-    shuffle(greenDesk);
     let miniGreenDesk = greenDesk.slice(0, 5);
-    console.log(miniGreenDesk);
+    shuffle(miniGreenDesk);
     deskForStage1.push(...miniGreenDesk.slice(0, 1));
     deskForStage2.push(...miniGreenDesk.slice(1, 3));
     deskForStage3.push(...miniGreenDesk.slice(3, 5));
 }
 
 function azathothBrownCardsDesk() {
-    shuffle(brownDesk);
     let miniBrownDesk = brownDesk.slice(0, 9);
-    console.log(miniBrownDesk);
+    shuffle(miniBrownDesk);
     deskForStage1.push(...miniBrownDesk.slice(0, 2));
     deskForStage2.push(...miniBrownDesk.slice(2, 5));
     deskForStage3.push(...miniBrownDesk.slice(5, 9));
 }
 
 function azathothBlueCardsDesk() {
-    shuffle(blueDesk);
     let miniBlueDesk = blueDesk.slice(0, 2);
-    console.log(miniBlueDesk);
+    shuffle(miniBlueDesk);
     deskForStage1.push(...miniBlueDesk.slice(0, 1));
     deskForStage2.push(...miniBlueDesk.slice(1, 2));
 }
@@ -443,52 +478,46 @@ function azathothBlueCardsDesk() {
 // cthulthu
 
 function cthulthuGreenCardsDesk() {
-    shuffle(greenDesk);
     let miniGreenDesk = greenDesk.slice(0, 4);
-    console.log(miniGreenDesk);
+    shuffle(miniGreenDesk);
     deskForStage2.push(...miniGreenDesk.slice(0, 1));
     deskForStage3.push(...miniGreenDesk.slice(1, 4));
 }
 
 function cthulthuBrownCardsDesk() {
-    shuffle(brownDesk);
     let miniBrownDesk = brownDesk.slice(0, 9);
-    console.log(miniBrownDesk);
+    shuffle(miniBrownDesk);
     deskForStage1.push(...miniBrownDesk.slice(0, 2));
     deskForStage2.push(...miniBrownDesk.slice(2, 5));
     deskForStage3.push(...miniBrownDesk.slice(5, 9));
 }
 
 function cthulthuBlueCardsDesk() {
-    shuffle(blueDesk);
     let miniBlueDesk = blueDesk.slice(0, 2);
-    console.log(miniBlueDesk);
+    shuffle(miniBlueDesk);
     deskForStage1.push(...miniBlueDesk.slice(0, 2));
 }
 
 // iog
 
 function iogSothothGreenCardsDesk() {
-    shuffle(greenDesk);
     let miniGreenDesk = greenDesk.slice(0, 5);
-    console.log(miniGreenDesk);
+    shuffle(miniGreenDesk);
     deskForStage2.push(...miniGreenDesk.slice(0, 2));
     deskForStage3.push(...miniGreenDesk.slice(2, 5));
 }
 
 function iogSothothBrownCardsDesk() {
-    shuffle(brownDesk);
     let miniBrownDesk = brownDesk.slice(0, 9);
-    console.log(miniBrownDesk);
+    shuffle(miniBrownDesk);
     deskForStage1.push(...miniBrownDesk.slice(0, 2));
     deskForStage2.push(...miniBrownDesk.slice(2, 5));
     deskForStage3.push(...miniBrownDesk.slice(5, 9));
 }
 
 function iogSothothBlueCardsDesk() {
-    shuffle(blueDesk);
     let miniBlueDesk = blueDesk.slice(0, 2);
-    console.log(miniBlueDesk);
+    shuffle(miniBlueDesk);
     deskForStage1.push(...miniBlueDesk.slice(0, 1));
     deskForStage2.push(...miniBlueDesk.slice(1, 2));
 }
@@ -496,27 +525,24 @@ function iogSothothBlueCardsDesk() {
 // shubNiggurath
 
 function shubNiggurathGreenCardsDesk() {
-    shuffle(greenDesk);
     let miniGreenDesk = greenDesk.slice(0, 6);
-    console.log(miniGreenDesk);
+    shuffle(miniGreenDesk);
     deskForStage1.push(...miniGreenDesk.slice(0, 1));
     deskForStage2.push(...miniGreenDesk.slice(1, 4));
     deskForStage3.push(...miniGreenDesk.slice(4, 6));
 }
 
 function shubNiggurathBrownCardsDesk() {
-    shuffle(brownDesk);
     let miniBrownDesk = brownDesk.slice(0, 8);
-    console.log(miniBrownDesk);
+    shuffle(miniBrownDesk);
     deskForStage1.push(...miniBrownDesk.slice(0, 2));
     deskForStage2.push(...miniBrownDesk.slice(2, 4));
     deskForStage3.push(...miniBrownDesk.slice(4, 8));
 }
 
 function shubNiggurathBlueCardsDesk() {
-    shuffle(blueDesk);
     let miniBlueDesk = blueDesk.slice(0, 2);
-    console.log(miniBlueDesk);
+    shuffle(miniBlueDesk);
     deskForStage1.push(...miniBlueDesk.slice(0, 1));
     deskForStage2.push(...miniBlueDesk.slice(1, 2));
 }
@@ -548,16 +574,13 @@ function shaffleDesk() {
     shuffle(deskForStage1);
     shuffle(deskForStage2);
     shuffle(deskForStage3);
-    console.log(deskForStage1);
-    console.log(deskForStage2);
-    console.log(deskForStage3);
     resultDesk = [...deskForStage1, ...deskForStage2, ...deskForStage3];
     console.log(resultDesk);
 }
 
-const shuffleDeskBtn = document.querySelector('.shuffle-desk-btn');
 const desk = document.querySelector('.desk');
 const currentCard = document.querySelector('.current-card');
+const tracker = document.querySelector('.tracker');
 
 shuffleDeskBtn.addEventListener('click', () => {
     deskForStage1 = [];
@@ -566,14 +589,52 @@ shuffleDeskBtn.addEventListener('click', () => {
     resultDesk = [];
     shaffleDesk();
     currentCard.innerHTML = ``;
-    desk.innerHTML = `<img src="assets/mythicCardBackground.png" alt="desk" class="desk-bg">`
+    currentCard.classList.add('visible');
+    desk.classList.add('visible');
+    tracker.classList.add('visible');
+    trackCards(deskForStage1, 'green', 0);
+    trackCards(deskForStage1, 'brown', 1);
+    trackCards(deskForStage1, 'blue', 2);
+    trackCards(deskForStage2, 'green', 3);
+    trackCards(deskForStage2, 'brown', 4);
+    trackCards(deskForStage2, 'blue', 5);
+    trackCards(deskForStage3, 'green', 6);
+    trackCards(deskForStage3, 'brown', 7);
+    trackCards(deskForStage3, 'blue', 8);
 })
 
 desk.addEventListener('click', () => {
     if (resultDesk.length > 1) {
         currentCard.innerHTML = `<img src="${resultDesk[0].cardFace}" alt="currentCard" class="card">`;
-        resultDesk.shift();    
+        resultDesk.shift();  
+        if (deskForStage1.length > 0) {
+            deskForStage1.shift(); 
+        } else if (deskForStage2.length > 0) {
+            deskForStage2.shift();  
+        } else {
+            deskForStage3.shift();
+        }
     } else {
-        desk.innerHTML = ``;
+        desk.classList.remove('visible');
+        deskForStage3.shift();
     }
+    trackCards(deskForStage1, 'green', 0);
+    trackCards(deskForStage1, 'brown', 1);
+    trackCards(deskForStage1, 'blue', 2);
+    trackCards(deskForStage2, 'green', 3);
+    trackCards(deskForStage2, 'brown', 4);
+    trackCards(deskForStage2, 'blue', 5);
+    trackCards(deskForStage3, 'green', 6);
+    trackCards(deskForStage3, 'brown', 7);
+    trackCards(deskForStage3, 'blue', 8);
 })
+
+//tracker
+
+function trackCards(array, color, index) {
+    let currentColorCards = array.filter((e) => {
+        return e.color === color;
+    });
+    const dots = document.querySelectorAll('.dots');
+    dots[index].textContent = currentColorCards.length;
+}

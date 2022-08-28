@@ -1,4 +1,5 @@
 body {
+    margin: 0 auto;
     min-height: 100vh;
     font-size: 16px;
     color: #fff;
@@ -6,6 +7,9 @@ body {
     background: url(./assets/home.png) center/cover no-repeat;
     background-blend-mode: multiply;
     transition: background-image 1s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 button {
@@ -24,28 +28,38 @@ button {
     transition: .5s;
 }
 
+.shuffle-desk-btn {
+    opacity: 0;
+    background-image: linear-gradient(to right, #eff32c8a 0%, #9d9d6b63 51%, hsl(60deg 11% 30% / 62%) 100%);
+    color: black;
+
+}
+
 .wrapper {
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .ancient-cards {
-    justify-content: space-between;
-    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
     width: 100%;
-    height: 40vh;
+    flex-wrap: wrap;
 }
 
 .settings {
+    padding: 20px 0;
     width: 100%;
-    height: 20vh;
 }
 
 .difficulty {
     padding: 10px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
@@ -53,25 +67,95 @@ button {
 
 .card-zone {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 40px;
     width: 100%;
-    height: 40vh;
 }
 
 .card-container {
-    justify-content: flex-end;
+    justify-content: center;
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
 }
 
 .ancient,
-.desk-bg,
-.card {
-    height: 100%;
+.desk,
+.card,
+.current-card {
     cursor: pointer;
+    background-size: cover;
+    height: 320px;
+    width: 230px;
+    transition: .5s;
+}
+
+.desk {
+    opacity: 0;
+    box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
+    transition: .5s;
+}
+
+.current-card {
+    opacity: 0;
+    height: 320px;
+    width: 230px;
+    transition: .5s;
+    background-image: linear-gradient(to right, #eff32c8a 0%, #9d9d6b63 51%, hsl(60deg 11% 30% / 62%) 100%);
 }
 
 .active {
-    border: 2px solid gold;
+    box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
+}
+
+.tracker {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+}
+
+.stage-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-dots {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.dots {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.green {
+    background-color: rgb(58, 105, 58);
+}
+
+.brown {
+    background-color: rgb(131, 91, 42);
+}
+
+.blue {
+    background-color: rgb(53, 69, 130);
+}
+
+.visible {
+    opacity: 1;
+    transition: .5s;
+}
+
+@media screen and (max-width: 1000px) {
+
 }
