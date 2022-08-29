@@ -29,11 +29,14 @@ button {
     transition: .5s;
 }
 
-.shuffle-desk-btn {
-    opacity: 0;
+.shuffle-desk-btn,
+.ones-more-btn {
+    display: flex;
+    visibility: hidden;
     background-image: linear-gradient(to right, #eff32c8a 0%, #9d9d6b63 51%, hsl(60deg 11% 30% / 62%) 100%);
     color: black;
-
+    cursor: unset;
+    margin: 0 auto;
 }
 
 .wrapper {
@@ -49,12 +52,17 @@ button {
     gap: 10px;
     align-items: center;
     width: 100%;
+    min-height: 30vh;
     flex-wrap: wrap;
 }
 
-.settings {
-    padding: 20px 0;
-    width: 100%;
+.settings,
+.shuffle {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-height: 10vh;
 }
 
 .difficulty {
@@ -68,10 +76,11 @@ button {
 
 .card-zone {
     display: flex;
+    visibility: hidden;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 40px;
     width: 100%;
+    min-height: 30vh;
 }
 
 .card-container {
@@ -89,22 +98,28 @@ button {
 .current-card {
     cursor: pointer;
     background-size: cover;
-    height: 320px;
-    width: 230px;
+    height: 260px;
+    width: 180px;
     border-radius: 20px;
     transition: .5s;
 }
 
+.current-card,
 .desk {
-    opacity: 0;
+    cursor: unset;
+}
+
+.desk {
+    display: flex;
+    visibility: hidden;
     box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
     transition: .5s;
 }
 
 .current-card {
-    opacity: 0;
-    height: 320px;
-    width: 230px;
+    display: flex;
+    height: 260px;
+    width: 180px;
     transition: .5s;
     background-image: linear-gradient(to right, #eff32c8a 0%, #9d9d6b63 51%, hsl(60deg 11% 30% / 62%) 100%);
 }
@@ -117,7 +132,6 @@ button {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    opacity: 0;
 }
 
 .stage-wrapper {
@@ -132,8 +146,8 @@ button {
 }
 
 .dots {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
     display: flex;
@@ -154,6 +168,7 @@ button {
 }
 
 .visible {
-    opacity: 1;
+    visibility: visible;
     transition: .5s;
+    cursor: pointer;
 }

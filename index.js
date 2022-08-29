@@ -330,6 +330,9 @@ ancients.addEventListener('click', (e) => {
     if (e.target.classList.contains('ancient')) {
         e.target.classList.add('active');
     }
+    difficultyBtns.forEach((btn) => {
+        btn.classList.remove('active');
+    });
 })
 
 // level
@@ -583,6 +586,7 @@ function shaffleDesk() {
 const desk = document.querySelector('.desk');
 const currentCard = document.querySelector('.current-card');
 const tracker = document.querySelector('.tracker');
+const zone = document.querySelector('.card-zone');
 
 shuffleDeskBtn.addEventListener('click', () => {
     deskForStage1 = [];
@@ -591,9 +595,8 @@ shuffleDeskBtn.addEventListener('click', () => {
     resultDesk = [];
     shaffleDesk();
     currentCard.innerHTML = ``;
-    currentCard.classList.add('visible');
+    zone.classList.add('visible');
     desk.classList.add('visible');
-    tracker.classList.add('visible');
     trackCards(deskForStage1, 'green', 0);
     trackCards(deskForStage1, 'brown', 1);
     trackCards(deskForStage1, 'blue', 2);
@@ -603,6 +606,27 @@ shuffleDeskBtn.addEventListener('click', () => {
     trackCards(deskForStage3, 'green', 6);
     trackCards(deskForStage3, 'brown', 7);
     trackCards(deskForStage3, 'blue', 8);
+    shuffleDeskBtn.classList.remove('visible');
+})
+
+//ones more shuffle
+
+const onesMoreBtn = document.querySelector('.ones-more-btn');
+
+function onesMore() {
+    onesMoreBtn.classList.add('visible');
+}
+
+onesMoreBtn.addEventListener('click', () => {
+    onesMoreBtn.classList.remove('visible');
+    zone.classList.remove('visible');
+    desk.classList.remove('visible');
+    ancientsCards.forEach((card) => {
+        card.classList.remove('active');
+    });
+    difficultyBtns.forEach((btn) => {
+        btn.classList.remove('active');
+    });
 })
 
 desk.addEventListener('click', () => {
@@ -619,6 +643,8 @@ desk.addEventListener('click', () => {
     } else {
         desk.classList.remove('visible');
         deskForStage3.shift();
+        resultDesk.shift();  
+        onesMore();
     }
     trackCards(deskForStage1, 'green', 0);
     trackCards(deskForStage1, 'brown', 1);
