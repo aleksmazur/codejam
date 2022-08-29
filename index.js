@@ -642,6 +642,7 @@ desk.addEventListener('click', () => {
         }
     } else {
         desk.classList.remove('visible');
+        shuffleDeskBtn.classList.remove('visible');
         deskForStage3.shift();
         resultDesk.shift();  
         onesMore();
