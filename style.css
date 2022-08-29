@@ -1,4 +1,5 @@
 body {
+    margin: 0 auto;
     min-height: 100vh;
     font-size: 16px;
     color: #fff;
@@ -6,6 +7,9 @@ body {
     background: url(./assets/home.png) center/cover no-repeat;
     background-blend-mode: multiply;
     transition: background-image 1s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 button {
@@ -18,34 +22,54 @@ button {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
+    border-radius: 10px;
     background-image: linear-gradient(to right, #4e5150 0%, #1e1d25 51%, #e2e5e4 100%);
     background-size: 200% auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, .1);
     transition: .5s;
 }
 
+.shuffle-desk-btn,
+.ones-more-btn {
+    display: flex;
+    visibility: hidden;
+    background-image: linear-gradient(to right, #eff32c8a 0%, #9d9d6b63 51%, hsl(60deg 11% 30% / 62%) 100%);
+    color: black;
+    cursor: unset;
+    margin: 0 auto;
+}
+
 .wrapper {
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .ancient-cards {
-    justify-content: space-between;
-    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
     width: 100%;
-    height: 40vh;
+    min-height: 30vh;
+    flex-wrap: wrap;
 }
 
-.settings {
-    width: 100%;
-    height: 20vh;
+.settings,
+.shuffle,
+.initially {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-height: 10vh;
 }
 
 .difficulty {
     padding: 10px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
@@ -53,25 +77,99 @@ button {
 
 .card-zone {
     display: flex;
-    justify-content: center;
+    visibility: hidden;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     width: 100%;
-    height: 40vh;
+    min-height: 30vh;
 }
 
 .card-container {
-    justify-content: flex-end;
+    justify-content: center;
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
 }
 
 .ancient,
-.desk-bg,
-.card {
-    height: 100%;
+.desk,
+.card,
+.current-card {
     cursor: pointer;
+    background-size: cover;
+    height: 260px;
+    width: 180px;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.current-card,
+.desk {
+    cursor: unset;
+}
+
+.desk {
+    display: flex;
+    visibility: hidden;
+    box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
+    transition: .5s;
+}
+
+.current-card {
+    display: flex;
+    height: 260px;
+    width: 180px;
+    transition: .5s;
+    background-image: linear-gradient(to right, #eff32c8a 0%, #9d9d6b63 51%, hsl(60deg 11% 30% / 62%) 100%);
 }
 
 .active {
-    border: 2px solid gold;
+    box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
+}
+
+.tracker {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.stage-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-dots {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.dots {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: 6px 6px 6px rgba(255, 1215, 0, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.green {
+    background-color: rgb(58, 105, 58);
+}
+
+.brown {
+    background-color: rgb(131, 91, 42);
+}
+
+.blue {
+    background-color: rgb(53, 69, 130);
+}
+
+.visible {
+    visibility: visible;
+    transition: .5s;
+    cursor: pointer;
 }
